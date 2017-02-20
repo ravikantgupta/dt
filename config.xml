@@ -14,7 +14,7 @@
         </author>
     
     	     	
-		 <plugin name="org.apache.cordova.inappbrowser" spec="0.5.2"  />
+		
 		
     	<plugin name="org.apache.cordova.splashscreen" spec="0.2.7" source="pgb" />
     	
