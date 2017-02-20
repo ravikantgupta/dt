@@ -13,8 +13,7 @@
            Orangespike  team
         </author>
     
-    	<plugin name="org.apache.cordova.console" spec="0.2.11" source="pgb" />
-    	<plugin name="org.apache.cordova.device" spec="0.2.3" source="pgb" />
+    	  	<plugin name="org.apache.cordova.device" spec="0.2.3" source="pgb" />
     	
     	
     	
