@@ -39,28 +39,60 @@
     <preference name="android-minSdkVersion"      value="7" />              <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
            
+	<gap:plugin name="org.apache.cordova.console" />
+    	<gap:plugin name="org.apache.cordova.device" />
+    	<gap:plugin name="org.apache.cordova.dialogs" />
+    	<gap:plugin name="org.apache.cordova.network-information" />	   
 	 <plugin name="org.apache.cordova.inappbrowser" spec="0.5.2"  />
-	 
+	<gap:plugin name="org.apache.cordova.splashscreen" />
+	
+	
+	
+	<!-- Icons -->
+		<icon src="resource/icon/96x96px_2.png" />
+		<icon src="icon.png" gap:platform="ios" width="57" height="57" />
+        
+        
+		<icon src="120x120@2x.png" gap:platform="ios" width="120" height="120" />
+		<icon src="152x152@2x.png" gap:platform="ios" width="152" height="152" />
+		<icon src="72x72@2x.png" gap:platform="ios" width="72" height="72" />
+		<icon src="76x76@2x.png" gap:platform="ios" width="76" height="76" />
+		<!-- Splash Screens -->
+		<gap:splash src="resource/splash/480x800.png" />
+		<gap:splash src="resource/splash/320X480.png" />
+		<gap:splash src="Default.png" gap:platform="ios" width="320" height="480" />
+        <gap:splash src="Default@2x.png" gap:platform="ios" width="640" height="960" />
+        <gap:splash src="Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
+		<gap:splash src="splash.png" />
+		<gap:splash src="resource/splash/splash.png" />
+		<gap:splash src="Default-568h@2x.png" />
+		<gap:splash src="resource/splash/Default-568h@2x.png" />
+		
+		<!-- ====================== -->
+		<!-- iOS Configuration      -->
+			
+		<!-- ====================== -->
+		<!-- Icons -->
     <!-- Icons -->
 		
 		
 		
-		<icon src="www/resource/icon/96x96px_2.png" gap:platform="android" width="96" height="96" />
-		<icon src="www/resource/icon/72x72px_1.png" gap:platform="android" width="72" height="72" />
-		<icon src="www/resource/icon/48x48px_1.png" gap:platform="android" width="48" height="48" />
-		<icon src="www/resource/icon/36x36px_1.png" gap:platform="android" width="36" height="36" />
-		<icon src="www/resource/icon/96x96px_3.png" gap:platform="android" width="96" height="96" />
+		<icon src="resource/icon/96x96px_2.png" gap:platform="android" width="96" height="96" />
+		<icon src="resource/icon/72x72px_1.png" gap:platform="android" width="72" height="72" />
+		<icon src="resource/icon/48x48px_1.png" gap:platform="android" width="48" height="48" />
+		<icon src="resource/icon/36x36px_1.png" gap:platform="android" width="36" height="36" />
+		<icon src="resource/icon/96x96px_3.png" gap:platform="android" width="96" height="96" />
 		
 		
 		<!-- Splash Screens -->
-		<gap:splash src="www/resource/splash/480x800.png" gap:platform="android" width="480" height="800" />
-		<gap:splash src="www/resource/splash/200x320.png" gap:platform="android" width="200" height="320" />
-		<gap:splash src="www/resource/splash/512x512_7.png" gap:platform="android" width="320" height="480" />
-		<gap:splash src="www/resource/splash/720x1280.png" gap:platform="android" width="720" height="1280" />
-		<gap:splash src="www/resource/splash/800x480.png" gap:platform="android" width="800" height="480" />
-		<gap:splash src="www/resource/splash/320x200.png" gap:platform="android" width="320" height="200" />
-		<gap:splash src="www/resource/splash/480x320.png" gap:platform="android" width="480" height="320" />
-		<gap:splash src="www/resource/splash/1280x720.png" gap:platform="android" width="1280" height="720" />
+		<gap:splash src="resource/splash/480x800.png" gap:platform="android" width="480" height="800" />
+		<gap:splash src="resource/splash/200x320.png" gap:platform="android" width="200" height="320" />
+		<gap:splash src="resource/splash/512x512_7.png" gap:platform="android" width="320" height="480" />
+		<gap:splash src="resource/splash/720x1280.png" gap:platform="android" width="720" height="1280" />
+		<gap:splash src="resource/splash/800x480.png" gap:platform="android" width="800" height="480" />
+		<gap:splash src="resource/splash/320x200.png" gap:platform="android" width="320" height="200" />
+		<gap:splash src="resource/splash/480x320.png" gap:platform="android" width="480" height="320" />
+		<gap:splash src="resource/splash/1280x720.png" gap:platform="android" width="1280" height="720" />
     <!--
         Define access to external domains.
 
