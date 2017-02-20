@@ -42,7 +42,6 @@
 	
     	   
 	 <plugin name="org.apache.cordova.inappbrowser" spec="0.5.2"  />
-	<gap:plugin name="org.apache.cordova.splashscreen" />
 	
 	
 	
