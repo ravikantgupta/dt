@@ -14,6 +14,7 @@
         </author>
     
     	<gap:plugin name="org.apache.cordova.console" spec="0.5.2" />
+		
     	<gap:plugin name="org.apache.cordova.device" spec="0.5.2" />
     	<gap:plugin name="org.apache.cordova.dialogs" spec="0.5.2" />
     	<gap:plugin name="org.apache.cordova.network-information" spec="0.5.2" />
