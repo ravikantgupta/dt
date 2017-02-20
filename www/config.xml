@@ -21,7 +21,7 @@
         following tag to your config.xml; you will still have the INTERNET
         permission on your app, which PhoneGap requires.
     -->
-    <preference name="permissions"                value="none"/>
+    <preference name="permissions"  value="none"/>
 
     <!-- Customize your app and platform with the preference element. -->
     <preference name="phonegap-version"           value="3.7.0" />          <!-- all: current version of PhoneGap -->
@@ -45,22 +45,22 @@
 		
 		
 		
-		<icon src="resource/icon/96x96px_2.png" gap:platform="android" width="96" height="96" />
-		<icon src="resource/icon/72x72px_1.png" gap:platform="android" width="72" height="72" />
-		<icon src="resource/icon/48x48px_1.png" gap:platform="android" width="48" height="48" />
-		<icon src="resource/icon/36x36px_1.png" gap:platform="android" width="36" height="36" />
-		<icon src="resource/icon/96x96px_3.png" gap:platform="android" width="96" height="96" />
+		<icon src="www/resource/icon/96x96px_2.png" gap:platform="android" width="96" height="96" />
+		<icon src="www/resource/icon/72x72px_1.png" gap:platform="android" width="72" height="72" />
+		<icon src="www/resource/icon/48x48px_1.png" gap:platform="android" width="48" height="48" />
+		<icon src="www/resource/icon/36x36px_1.png" gap:platform="android" width="36" height="36" />
+		<icon src="www/resource/icon/96x96px_3.png" gap:platform="android" width="96" height="96" />
 		
 		
 		<!-- Splash Screens -->
-		<gap:splash src="resource/splash/480x800.png" gap:platform="android" width="480" height="800" />
-		<gap:splash src="resource/splash/200x320.png" gap:platform="android" width="200" height="320" />
-		<gap:splash src="resource/splash/512x512_7.png" gap:platform="android" width="320" height="480" />
-		<gap:splash src="resource/splash/720x1280.png" gap:platform="android" width="720" height="1280" />
-		<gap:splash src="resource/splash/800x480.png" gap:platform="android" width="800" height="480" />
-		<gap:splash src="resource/splash/320x200.png" gap:platform="android" width="320" height="200" />
-		<gap:splash src="resource/splash/480x320.png" gap:platform="android" width="480" height="320" />
-		<gap:splash src="resource/splash/1280x720.png" gap:platform="android" width="1280" height="720" />
+		<gap:splash src="www/resource/splash/480x800.png" gap:platform="android" width="480" height="800" />
+		<gap:splash src="www/resource/splash/200x320.png" gap:platform="android" width="200" height="320" />
+		<gap:splash src="www/resource/splash/512x512_7.png" gap:platform="android" width="320" height="480" />
+		<gap:splash src="www/resource/splash/720x1280.png" gap:platform="android" width="720" height="1280" />
+		<gap:splash src="www/resource/splash/800x480.png" gap:platform="android" width="800" height="480" />
+		<gap:splash src="www/resource/splash/320x200.png" gap:platform="android" width="320" height="200" />
+		<gap:splash src="www/resource/splash/480x320.png" gap:platform="android" width="480" height="320" />
+		<gap:splash src="www/resource/splash/1280x720.png" gap:platform="android" width="1280" height="720" />
     <!--
         Define access to external domains.
 
