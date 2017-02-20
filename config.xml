@@ -13,7 +13,9 @@
            Orangespike  team
         </author>
     
-    	 
+    	<plugin name="org.apache.cordova.console" spec="0.2.11"/>
+    	<plugin name="org.apache.cordova.device" spec="0.2.3" />
+    	
     	
 		 <plugin name="org.apache.cordova.inappbrowser" spec="0.5.2"  />
 		
