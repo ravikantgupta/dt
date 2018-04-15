@@ -65,7 +65,8 @@
 		<gap:splash src="resource/splash/1280x720.jpg" gap:platform="android" width="1280" height="720" />
 		
     
-	       
+	       <preference name='phonegap-version' value='cli-6.5.0' />
+<preference name='pgb-builder-version' value='2' />
 			  <preference name="SplashScreen" value="screen" />
 				<preference name="show-splash-screen-spinner" value="true"/>
 				  <preference name="auto-hide-splash-screen" value="true"/>
