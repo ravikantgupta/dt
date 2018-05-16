@@ -24,26 +24,21 @@
 	function setval()
 	{
 	
-	var ref = cordova.InAppBrowser.open('https://www.ebusindia.in/html/test.html', '_blank');
-	ref.addEventListener('loadstop', function (event) {
-				ref.executeScript({
-				file: "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
-				},
-				function () {
-				ref.executeScript({
-				code: "jQuery('#myform').submit();"
-				});
-				});});
-				
-		 ref.addEventListener('exit', onBrowserClose);	
- 	 
-			
+	var ref = cordova.InAppBrowser.open('https://www.ebusindia.in', '_blank');
+	 	 
+			ref.addEventListener('loadstart', function(e, event){
+			 alert('shree ram1');
+             });
+
+          ref.addEventListener('$cordovaInAppBrowser:loadstop', function(e, event){
+    
+          alert('shree ram');
+    
+           });
 
     
 	}
-	function onBrowserClose(event){
-	alert('ram');
-	}
+	
 	function onDeviceReady() {
         // Register the event listener
         document.addEventListener("backbutton", onBackKeyDown, false);
