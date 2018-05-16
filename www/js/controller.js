@@ -1,41 +1,65 @@
 myApp.controller("controller", function($scope){
-	
-	// Fetch Device info from Device Plugin
-	$scope.alertDeviceInfo = function() {
-		alert('ram1');
-		var deviceInfo = ('Device Platform: ' + device.platform + '\n'
-				+ 'Device Version: ' + device.version + '\n' + 'Device Model: '
-				+ device.model + '\n' + 'Device UUID: ' + device.uuid + '\n');
 
-		navigator.notification.alert(deviceInfo);
-	};
+$scope.payWithPayMoney = function() {
+    var options = {
+      location: 'yes',
+      clearcache: 'yes',
+      toolbar: 'no',
+      closebuttoncaption:'back'
+    };
+	alert('ram');
+     var close;
+    var closeLoop;
+    var amt = 100;
+    var name =  'Ravi gupta';
+    var mobile = '9898986666';
+    var email = 'rvgupta444@gmail.com.com';
+    var bookingId = '1001';
+    var productinfo = "Order for 1001";
+    var salt = "******";
+    var key = "******";
+    var string = key + '|' + bookingId + '|' + amt+ '|' + productinfo + '|' + name + '|' + email +'|||||||||||'+salt;    
+    var encrypttext = string;
 
-	// Fetch location info from GeoLocation Plugin
-	$scope.alertGeoLocation = function() {
-		alert('ram');
-		var onSuccess = function(position) {
-			navigator.notification.alert('Latitude: '
-					+ position.coords.latitude + '\n' + 'Longitude: '
-					+ position.coords.longitude + '\n' + 'Altitude: '
-					+ position.coords.altitude + '\n' + 'Accuracy: '
-					+ position.coords.accuracy + '\n' + 'Altitude Accuracy: '
-					+ position.coords.altitudeAccuracy + '\n' + 'Heading: '
-					+ position.coords.heading + '\n' + 'Timestamp: '
-					+ position.timestamp + '\n');
-		};
-		navigator.geolocation.getCurrentPosition(onSuccess);
+    var url = "payumoney/payuBiz.html?amt="+amt+"&name="+name+"&mobileNo="+mobile+"&email="+email+"&bookingId="+bookingId+"&productinfo="+productinfo+"&hash="+encrypttext+"&salt="+salt+"&key="+key ;
+    console.log(url);
+    $cordovaInAppBrowser.open(url, '_blank', options)
+      .then(function(event) {
+        // success
+      })
+      .catch(function(event) {
+        // error
+      });
+    //$cordovaInAppBrowser.close();
+  $rootScope.$on('$cordovaInAppBrowser:loadstart', function(e, event){
+  });
 
-	};
+  $rootScope.$on('$cordovaInAppBrowser:loadstop', function(e, event){
+    // insert CSS via code / file
+      $cordovaInAppBrowser.executeScript({
+           file: "payumoneyPaymentGateway.js"
+      });
 
-	// Makes a beep sound
-	$scope.beepNotify = function() {
-		alert('ram2');
-		navigator.notification.beep(1);
-	};
+    if(event.url == "http://localhost/success.php") {
+            $cordovaInAppBrowser.close();
+            cartService.clearCart();
+            $state.go("app.thanksAndHotFix");
+      }
+      if(event.url == "http://localhost/failure.php") {
+        $cordovaInAppBrowser.close();
+         $ionicPopup.alert({
+                 title:'Something Is Wrong',
+                 template:'You payment failed!'
+               });
+      }
+  });
+  
 
-	// Vibrates the phone
-	$scope.vibrateNotify = function() {
-		alert('ram3');
-		navigator.notification.vibrate(1000);
-	};
+    $rootScope.$on('$cordovaInAppBrowser:loaderror', function(e, event){
+    });
+
+      $rootScope.$on('$cordovaInAppBrowser:exit', function(e, event){
+      });
+  }
+
 });
