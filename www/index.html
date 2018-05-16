@@ -31,12 +31,12 @@
     }
 	var ref = cordova.InAppBrowser.open('https://www.ebusindia.in', '_blank', 'location=yes');
 	 	 
-			ref.addEventListener('loadstart', function(e, event){
+			ref.addEventListener('loadstart', function(event){
 			 alert('shree ram1');
 			  alert( event.url);
              });
 
-          ref.addEventListener('loadstop', function(e, event){
+          ref.addEventListener('loadstop', function(event){
     	         
               alert('shree ram');
 			
