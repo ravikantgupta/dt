@@ -15,13 +15,13 @@
     
     	
     	
-    	
+    	 <plugin name="com.telerik.plugins.nativepagetransitions" spec="^0.6.5" />
 		  <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
 
 		
     	
 		
-  	<!--	<gap:plugin name="nl.x-services.plugins.googleplus" source="plugins.cordova.io"/> -->
+  	
   		
     	<!--Icons and Splash Screens Configuration for Mofluid Apps-->
 		
