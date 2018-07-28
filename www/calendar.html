@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ebus india</title>
+
+ <link href="css/my-css.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="css/calander/jquery-ui.css">
+  <script src="css/calander/jquery-1.12.4.js"></script>
+ <script src="css/calander/jquery-ui.js"></script>
+ 
+
+
+	<link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
+
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+	<script src="js/fontawesome.js"></script>
+
+	<script src="js/left-menu2.js"></script>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+
+    
+
+</head>
+
+<body  onload="setvalue()">
+<script>
+function setvalue()
+		{
+		
+		    
+				var d = new Date();
+		     	 
+		         document.getElementById("jrn_date").value = d.getFullYear()+'-'+(parseInt(d.getMonth())+1)+'-'+d.getDate();
+				 
+				 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+					
+			 
+					 document.getElementById("tdt").innerHTML = d.getDate()+','+ months[d.getMonth()]+' '+d.getFullYear().toString().substr(-2);
+					
+				var tomorrow = new Date(d.getTime() + 86400000); 
+                  
+					  
+			 	 document.getElementById("tmdt").innerHTML = tomorrow.getDate()+','+ months[tomorrow.getMonth()]+' '+tomorrow.getFullYear().toString().substr(-2);
+				 
+				 document.getElementById("jrn_date").value =  tomorrow.getFullYear()+'-'+(parseInt(tomorrow.getMonth())+1)+'-'+ tomorrow.getDate();
+		   
+		
+				  
+		}
+function setdatepick()
+ {
+ 
+ 
+   jQuery('.tomorrow').css('color','#b11d1d');
+   jQuery('.today').css('color','##ccc');
+   
+    jQuery('.date-tomorrow').css('color','#000');
+   jQuery('.date-today').css('color','#ccc');
+   
+         var jrn_date=$('#jrn_date').val();
+		 
+       window.localStorage.setItem("datejrn_date", jrn_date);
+	   
+	    window.plugins.nativepagetransitions.slide({
+                 "direction" : "right",
+                 "href" : 'index.html'
+             });
+
+}
+
+
+</script>
+
+<div class="container" style="overflow:hidden;">
+<div class="header" style="background-color:#b11d1d !important;">
+
+<div class="row">
+
+ <div class="col-sm-12 col-xs-12 dasbord-font text-center"><a onClick="bakpage('index.html')"><img src="images/back.png" style="margin-right:20px;"></a>Journey Date</div>
+
+
+</div>
+
+</div>
+
+
+<div class="quick-bus-link">
+	<div class="ebus-list-inner">
+		<div class="row margin-left-right-0">
+			<div class="ebus-seat-list">
+				<div class="col-sm-12 col-xs-12 padding-left-right">
+					<div class="calendar-list">
+						<div class="calendar-list-top">
+							<div class="calendar-list-today">
+								<div class="calendar-today-date">
+									<p class="today">Today</p>
+									<p id="tdt" class="date-today">05 May,18</p>
+								</div>
+							</div>
+							<div class="calendar-list-tomorrow" onclick="setdatepick()">
+								<div class="calendar-tomorrow-date">
+									<p class="tomorrow">Tomorrow</p>
+									<p  id="tmdt" class="date-tomorrow">06 May,18</p>
+									
+								</div>
+								  <input type="hidden" name="jrn_date" id="jrn_date">
+							</div>
+						</div>
+						<!-- <div class="calendar-list-outer">
+							<span class="month-title">MAY 2018</span> <span class="month-next"><img src="images/arrow_right_black.png"></span>
+						</div> -->
+						<div class="calendar-list-inner">
+					
+							<div id="datepicker2"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+
+</div>
+
+
+ 
+ <script>
+ $( function() {
+  
+$( "#datepicker2" ).datepicker({
+       dateFormat: "yy-mm-dd",
+      onSelect: function (dateText, inst) {
+         
+		
+		  window.localStorage.setItem("datejrn_date", dateText);
+		  
+		 
+		  
+		   window.plugins.nativepagetransitions.slide({
+		        
+                 "direction" : "right",
+				 
+                 "href" : 'index.html'
+             });
+      }
+   });
+ } );
+ </script>
+  
+
+</body>
+</html>

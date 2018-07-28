@@ -1,74 +1,269 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>InAppBrowser Tester</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
 
-   
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+      
     
-	 <script type="text/javascript" src="cordova.js"></script>
-            <script type="text/javascript" src="js/index.js"></script>
+	  
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     
+        <title>Ebookbus</title>
+		
+		 <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
                 <script type="text/javascript" src="js/functions.js"></script>
 
 
                 <script src="js/jquery-1.11.2.min.js"></script>
 
+   <link href="css/my-css.css" rel="stylesheet" type="text/css" />
+                <link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
 
-             
-   
-</head>
-<body onload="setval()">
-    
-	<script>
-	function setval()
-	{
-	 var options = {
-      location: 'yes',
-      clearcache: 'yes',
-      toolbar: 'no',
-      closebuttoncaption:'back'
-    }
-	var ref = cordova.InAppBrowser.open('https://www.ebusindia.in', '_blank', 'location=yes');
-	 	 
-			ref.addEventListener('loadstart', function(event){
-			 alert('shree ram1');
-			  alert( event.url);
-             });
+                <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/sugesion/style.css">
+                <script src="js/left-menu2.js"></script>
+				
+				<script type="text/javascript" src="css/sugesion/jquery.autocomplete.min.js"></script>
 
-          ref.addEventListener('loadstop', function(event){
-    	         
-              alert('shree ram');
+    </head>
+    <body onload="setvalue()">
+
+
+<script>
+	function setvalue()
+		{
+		
+		
+		   
+		   var datecity_from= window.localStorage.getItem("datecity_from");
+		   var datecity_to= window.localStorage.getItem("datecity_to");
+	       var jrn_date= window.localStorage.getItem("datejrn_date");
+		   
+		  
+		   
+		 
+		   
+		   if (localStorage.getItem("datejrn_date") === null) {
+                 var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+					var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+					var datestring = ["1<sup>st</sup>", "2<sup>nd</sup>", "3<sup>rd</sup>", "4<sup>th</sup>", "5<sup>th</sup>", "6<sup>th</sup>", "7<sup>th</sup>", "8<sup>th</sup>", "9<sup>th</sup>", "10<sup>th</sup>", "11<sup>th</sup>", "12<sup>th</sup>", "13<sup>th</sup>", "14<sup>th</sup>", "15<sup>th</sup>", "16<sup>th</sup>", "17<sup>th</sup>", "18<sup>th</sup>", "19<sup>th</sup>", "20<sup>th</sup>", "21<sup>st</sup>", "22<sup>nd</sup>", "23<sup>rd</sup>", "24<sup>th</sup>", "25<sup>th</sup>", "26<sup>th</sup>", "27<sup>th</sup>", "28<sup>th</sup>", "29<sup>th</sup>", "30<sup>th</sup>", "31<sup>st</sup>"];
+					var d = new Date();
+					var dayName = days[d.getDay()];
+
+					 document.getElementById("day").innerHTML = datestring[d.getDate()-1];
+					 
+					 document.getElementById("dayname").innerHTML = days[d.getDay()];
+					 
+					 document.getElementById("month").innerHTML =  months[d.getMonth()];
+					 
+					 document.getElementById("jrn_date").value = d.getFullYear()+'-'+(parseInt(d.getMonth())+1)+'-'+d.getDate();
+					
+					 
+            }else
+			{
+		    document.getElementById("jrn_date").value =jrn_date;
 			
-		      alert( event.url);
-    
-           });
+			 var d = new Date(jrn_date);
+			 
+			setdatehtml(d);
+			
+			 window.localStorage.removeItem("datejrn_date");
+		   	}	
 
-    
-	}
-	
-	function onDeviceReady() {
-        // Register the event listener
-        document.addEventListener("backbutton", onBackKeyDown, false);
-    }
 
-	function onBackKeyDown(){
-	alert('ram1');
-	}
-    </script>
-	<form id="payform" action="https://www.paypal.com/it/cgi-bin/webscr" method="post" target="_self">;
-<!-- Saved buttons use the "secure click" command -->
-  <input type="text" name="cmd" value="_s-xclick">
 
-  <!-- Saved buttons are identified by their button IDs -->
-  <input type="text" name="hosted_button_id" value="221">
+                 $.ajax({	    	type:'GET',
+						
+						url:"https://www.m.ebusindia.in/service/getcityhtml",
+						data:'falag=1',
+						  dataType: 'json',
+						success:function(data)
+						{
+						
+						
+						 var currencies = [];
+						var i=0;
+						for (var key in data) {
+							if (data.hasOwnProperty(key)) {
+																
+								contstr={value: data[key], data:key};
+								currencies[i]=contstr;
+								
+								i++;
+							}
+						}
+		
+							 
+						
+							
+							jQuery('#autocomplete').autocomplete({
+								lookup: currencies,
+								onSelect: function (suggestion) {
+								
+								  $('#city_from').val(suggestion.data);
+								}
+							  }); 
+							  
+							 
+							  
+							   jQuery('#autocomplete1').autocomplete({
+								lookup: currencies,
+								onSelect: function (suggestion) {
+								
+								  jQuery('#city_to').val(suggestion.data);
+								}
+							  });
+							  
+							 
+							  
+						  document.getElementById("city_from").value =datecity_from;
+		                     document.getElementById("city_to").value =datecity_to;
+							 
+							 
+							 
+							 
+							
+						},
+						error: function(e) {
+							alert('Error: ' + e.message);
+						}
+					  });
+			
+		}
+	</script>
 
-  <!-- Saved buttons display an appropriate button image. -->
-  <input type="image" name="submit"
-    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-    alt="PayPal - The safer, easier way to pay online">
-  <img alt="" width="1" height="1"
-    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
-</form>
-</body>
+
+    <div class="container" style="overflow:hidden;">
+        <div class="header">
+
+            <div class="row">
+                <div class="col-sm-2 col-xs-2"><div id="menu-toggle">
+                    <div id="menu-icon">
+
+                        <div style="background:#000 !important;"><span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span></div>
+
+                    </div>
+
+                </div>
+                    <div id="menu-overlay"></div>
+                    <ul id="menu"  class="gw-nav gw-nav-list">
+
+					
+                         </ul>
+
+
+                </div>
+
+                <!-- <div class="col-sm-5 col-xs-5 dasbord-font">Dashboard</div> -->
+
+                <div class="col-sm-2 col-xs-2"></div>
+
+                <div class="col-sm-3 col-xs-3" style="text-align:center;">
+
+                    <div id="loginContainer">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-link">
+            <div class="row">
+
+                <div class="col-sm-12 text-center ebus-app-logo">
+                    <img src="images/logo.png" class="img-responsive">
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="ebus-app-first">
+                        <div class="ebus-app-first-outer">
+                            <div class="ebus-app-first-inner">
+                                <div class="ebus-app-first-form">
+                                    <form id="searchFrm" method="post">
+                                        <div class="form-group">
+                                             <input type="text" name="cityfrom" class="form-control place-color" id="autocomplete" placeholder="From">
+						
+						                       <input type="hidden" name="city_from" id="city_from">
+											 <span class="locat-icon"><img src="images/locat.png"></span>
+                                        </div>
+                                        <div class="form-group">
+                                         
+											<input type="text" name="cityto" class="form-control place-color" id="autocomplete1" placeholder="To">
+											<input type="hidden" name="city_to" id="city_to">
+                                          <span class="locat-icon"><img src="images/locat.png"></span>
+                                        </div>
+                                        <div class="form-date" onclick="showdate(this)">
+                                            <span class="j-date">journey date</span>
+                                            <div class="j-date-desc" >
+                                                <span id="day" class="j-date-1"></span>
+                                                <span class="j-date-2">
+								<span id="dayname"></span><br><span id="month"></span>
+							</span>
+                                                <span id="dateyear" class="j-date-3">Today</span>
+                                            </div>
+                                        </div>
+                                      <input type="hidden" name="jrn_date" id="jrn_date">
+                                    </form>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-xs-12">
+                    <div class="home-search-btn">
+				
+                        <button class="btn my-btn searchlist" onclick="buslist(this)">Search</button>
+						
+                    </div>
+                </div>
+
+            </div>
+
+			
+			
+			<div class="footer-bottom">
+	<p class="foot-cont">Help - +91 8750100091 / 8750100092</p>
+</div>
+			
+			
+			
+			
+        </div>
+
+
+    </div>
+
+     
+
+    </body>
 </html>

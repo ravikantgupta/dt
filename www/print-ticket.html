@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ebus india</title>
+
+<link href="css/my-css.css" rel="stylesheet" type="text/css" />
+  <script src="js/jquery-1.11.2.min.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
+	<script src="js/fontawesome.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+	<script src="js/left-menu2.js"></script>
+	 <script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+</head>
+
+<body >
+
+<script>
+	function prnticket()
+	{
+	
+	               var pnr=jQuery('#pnr').val();
+				   var tckno=jQuery('#tckno').val();
+	   
+                   window.localStorage.setItem("pnr", pnr);
+				   window.localStorage.setItem("tckno", tckno);
+					
+
+                 window.plugins.nativepagetransitions.slide({
+                      "direction" : "left",
+					  "duration":1000,
+			          "androiddelay"     :  400,
+                      "href" : "ticket.html"
+                  });
+	}
+</script>
+<div class="container" style="overflow:hidden;">
+<div class="header" style="background-color:#b11d1d !important;">
+
+<div class="row">
+<div class="col-sm-2 col-xs-2"><div id="menu-toggle">
+<div id="menu-icon">
+
+<div style="background:#000 !important;"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div>
+
+</div>
+
+</div>
+<div id="menu-overlay"></div>
+<ul id="menu"  class="gw-nav gw-nav-list">
+
+
+</ul>
+
+
+</div>
+
+ <div class="col-sm-10 col-xs-10 dasbord-font text-center"><a onClick="bakpage('index.html')"><img src="images/back.png" style="margin-right:20px;"></a>Print Ticket</div>
+
+
+</div>
+
+</div>
+
+
+<div class="quick-bus-link">
+	<div class="print-list-inner">
+		<div class="row">
+			<div class="page-container-list">
+				<div class="col-sm-12 col-xs-12">
+					<h3 class="page-detail-head">Enter Details</h3>
+					<div class="page-detail-outer">
+						
+						<div class="form-group">
+						  <label>Enter PNR Number :</label>
+						  <input type="text" name="pnr" id="pnr" value="" class="form-control" >
+						</div>
+						<div class="form-group">
+						  <label>Enter Ticket Number :</label>
+						  <input type="text" name="tckno" id="tckno" value="" class="form-control" >
+						</div>
+						
+						<div class="form-group">
+						
+						 <center> <button class="btn my-btn" onClick="prnticket()" >Submit</button> </center>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+</div>
+
+
+</body>
+</html>

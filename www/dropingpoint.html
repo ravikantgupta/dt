@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ebus india</title>
+
+<link href="css/my-css.css" rel="stylesheet" type="text/css" />
+  
+    <script src="js/jquery-1.11.2.min.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
+	<script src="js/fontawesome.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+	<script src="js/left-menu2.js"></script>
+
+	 <script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+</head>
+
+<body onload="setvalue()">
+
+<script>
+function setvalue()
+		{
+		
+		  
+		  
+		   var bus_type= window.localStorage.getItem("bustype");
+		   var bus_id= window.localStorage.getItem("busid");
+	       var jrn_date= window.localStorage.getItem("jrn_date");
+		   
+		   
+		    var city_from_text= window.localStorage.getItem("city_from_text");
+		   var city_to_text= window.localStorage.getItem("city_to_text");
+		   
+		   jQuery('#serachplace').html(city_from_text+' To '+ city_to_text);
+	     
+		    	   
+		   
+		   
+		     $.ajax({	    	type:'GET',
+						
+						url:"https://www.m.ebusindia.in/service/bus_boardingdropping",
+						data:'bus_type='+bus_type+'&bus_id='+bus_id,
+						success:function(data)
+						{
+						  
+							jQuery('#buslisting').html(data);
+							
+						},
+						error: function(e) {
+							alert('Error: ' + e.message);
+						}
+					  });
+				  
+		}
+
+  function checkpoint(point)
+  {
+     if(point=='board')
+	 {
+	   jQuery('.pointtab1').addClass('pointactive');
+	   jQuery('.pointtab2').removeClass('pointactive');
+	   jQuery('.bordpoint').show();
+	     jQuery('.droppoint').hide();
+	 }else
+	 {
+	      jQuery('.pointtab2').addClass('pointactive');
+	      jQuery('.pointtab1').removeClass('pointactive');
+	      jQuery('.bordpoint').hide();
+	      jQuery('.droppoint').show();
+	 }
+  }
+</script>
+
+<div class="container" style="overflow:hidden;">
+<div class="header" style="background-color:#b11d1d !important;">
+
+<div class="row">
+
+
+ <div class="col-sm-10 col-xs-10 dasbord-font text-center"><a onClick="bakpage('bus-list-detail.html')"><img src="images/back.png" style="margin-right:20px;"></a><span id="serachplace">Delhi To Manali</span></div>
+ 
+ <div class="col-sm-2 col-xs-2"><a style="color: white; font-size: 17px;" onclick="passangerdetail()">Next</a></div>
+
+
+</div>
+
+</div>
+
+    
+		
+<div class="quick-bus-link">
+
+    <div class="dropheading" style="height: 50px; background-color: white; padding-top: 12px; font-size: 16px;">
+        <div class="col-sm-12 col-xs-12" style="margin-left: -13px; height: 100%;">
+			<div class="col-sm-6 col-xs-6 pointtab1 pointactive" onclick="checkpoint('board')" >
+				<center>Boarding Point</center>
+			</div>
+			<div class="col-sm-6 col-xs-6 pointtab2" onclick="checkpoint('drop')">
+				<center>Dropping Point</center>
+			</div>
+			
+		</div>
+		
+		</div>
+		
+	
+	
+	<div class="ebus-list-inner">
+		<div class="row" id="buslisting">
+		
+		<div class="col-sm-12 col-xs-12" >
+				<div class="ebus-list-inner-desc" style="min-height:600px">
+					<center style="margin-top:40%"><img style="width:100px" src="images/Loading_icon.gif"></center>
+				</div>
+			</div>
+		
+		
+		</div>
+	</div>
+	
+</div>
+
+
+</div>
+
+<style>
+/* The container */
+.container {
+    display: block;
+    position: relative;
+ /*  padding-left: 35px; */
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+	margin-top: 9px;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #b11d1d;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+.ebus-list-detail{
+   height: 60px;
+   border-bottom: 1px solid #ccc;
+    padding: 6px 15px;
+}
+/* .ebus-list-inner-desc:last-child {
+    border-bottom: 1px solid #000;
+} */
+.pointtab1
+{
+   border-right: medium inset #ccc; 
+ height: 100%;
+ 
+}
+
+.pointtab2
+{
+  
+   height: 100%;
+ 
+}
+.pointactive{
+  border-bottom-color: #b11d1d; 
+  border-bottom-style: inset; 
+}
+
+.next-btn{
+	color:#fff;
+	font-size:15px !important;	
+}
+.bordpoint-inner{
+	background: #fff;
+	border-top: 1px solid #ccc
+}
+.list-detail-p {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 3px;
+    font-size: 16px;
+    margin-top: 0px;
+}
+
+
+</style>
+
+</body>
+</html>

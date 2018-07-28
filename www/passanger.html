@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ebus india</title>
+<link href="images/fav.jpg" rel="shortcut icon" />
+<link href="css/my-css.css" rel="stylesheet" type="text/css" />
+  <script src="js/jquery-1.11.2.min.js"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
+
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+	<script src="js/fontawesome.js"></script>
+
+	<script src="js/left-menu2.js"></script>
+	
+	
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+
+    
+</head>
+
+<body onload="setvalue()">
+
+<script>
+	function setvalue()
+		{
+		
+		  
+		   
+		   var bus_type= window.localStorage.getItem("bustype");
+		   var bus_id= window.localStorage.getItem("busid");
+	       var jrn_date= window.localStorage.getItem("jrn_date");
+		   
+		     var city_from= window.localStorage.getItem("city_from");
+		   var city_to= window.localStorage.getItem("city_to");
+		   
+		    var city_from_text= window.localStorage.getItem("city_from_text");
+		    var city_to_text= window.localStorage.getItem("city_to_text");
+			
+			
+			 var discount_price= window.localStorage.getItem("discount_price");
+		     var base_fare= window.localStorage.getItem("base_fare");
+			 var dis_fare= window.localStorage.getItem("dis_fare");
+		     var tol_fare= window.localStorage.getItem("tol_fare");
+		     var tot_seats= window.localStorage.getItem("tot_seats");
+		     var boarding_point= window.localStorage.getItem("boarding_point"); 
+			 var dropping_point= window.localStorage.getItem("dropping_point");
+		   
+		     
+				var user_id=	window.localStorage.getItem("userid");
+				
+				if(!user_id)
+				{
+				 user_id=0;
+				}else
+				{
+				
+				  jQuery('#walletsystem').show();
+				}
+				
+		     jQuery('#user_id').val(user_id);
+	     
+		     jQuery('#base_fare').val(base_fare);
+			 jQuery('#tot_seats').val(tot_seats);
+		     jQuery('#journey_date').val(jrn_date);
+			 jQuery('#bus_id').val(bus_id);
+			 jQuery('#deptPlace').val(boarding_point);
+			 jQuery('#dropPlace').val(dropping_point);
+			 jQuery('#deptFrom').val(city_from);
+			  jQuery('#arriveTo').val(city_to);
+
+			 jQuery('#total_fare').val(tol_fare);
+		     
+		  
+		     var tot_seatsdata=tot_seats.split(',');
+			 
+			 var i=0;
+			 var passangerhtml='';
+					
+			 for(i=0; i < tot_seatsdata.length; i++)
+			 {
+			 
+			    passangerhtml+='<div class="passanger-detail-outer">';
+					 passangerhtml+='<input name="busID[]" class="form-control" type="hidden"  value="'+bus_id+'">';
+				    passangerhtml+=' <input name="seatNo[]" class="form-control" type="hidden"  value="'+tot_seatsdata[i]+'">';
+					 passangerhtml+='	<p><span class="passanger-num">Passenger '+(i+1)+' </span> <span class="seat-num"> Seat '+tot_seatsdata[i]+'</span></p>';
+						 passangerhtml+='<div class="form-group">';
+						 passangerhtml+='  <label>Name</label>';
+						 passangerhtml+='  <input name="pname[]" type="text" class="form-control pname" placeholder="Enter your name">';
+						 passangerhtml+='</div>';
+						 passangerhtml+='<div class="form-group"><input name="gender[]" id="gender'+i+'" type="hidden"  value="">';
+						 passangerhtml+='  <span class="gen">';
+						 passangerhtml+='	<label>Gender</label>';
+						 passangerhtml+='		<a class="male gm'+i+'" onClick="setmail('+i+')" href="javascript:void(0)">Male</a>';
+						 passangerhtml+='		<a class="female fgm'+i+'" onClick="setfemail('+i+')" href="javascript:void(0)">Female</a>';
+						   passangerhtml+='</span>';
+						   passangerhtml+='<span class="gen age">';
+							 passangerhtml+='<label>Age</label>';
+							 passangerhtml+='<input type="number" name="page[]" class="input-age p_age" placeholder="Enter Age">';
+						  passangerhtml+=' </span>';
+						 passangerhtml+='</div>';
+					 passangerhtml+='</div>';
+			 
+			 }
+		     
+			 
+			 jQuery('#passangehtml').append(passangerhtml);
+			 
+			 jQuery('#totamount').html(tol_fare);
+			 
+			 var date = new Date(jrn_date);
+			
+		    jQuery('#jdt').html(date.getDate()+'-'+(parseInt(date.getMonth())+1)+'-'+date.getFullYear());
+			
+			
+			
+			
+			
+			var countDownDate = new Date(window.localStorage.getItem("timer")).getTime();
+
+				
+				// Update the count down every 1 second
+				var x = setInterval(function() {
+
+					// Get todays date and time
+					var now = new Date().getTime();
+					
+					// Find the distance between now an the count down date
+					var distance = countDownDate - now;
+					
+					// Time calculations for days, hours, minutes and seconds
+					var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+					var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+					var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+					
+					// Output the result in an element with id="demo"
+					document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+					
+					// If the count down is over, write some text 
+					if (distance < 0) {
+						clearInterval(x);
+						
+						///window.location = "<?php echo BASE_URL;?>";
+						
+					}
+				}, 1000);
+			  
+		   
+		     
+				  
+		}
+		
+		function setmail(counter)
+		{
+		  jQuery('#gender'+counter).val('Male');
+		  
+		  jQuery('.gm'+counter).css('background','greenyellow');
+		   jQuery('.fgm'+counter).css('background','');
+		}
+		
+		function setfemail(counter)
+		{
+		  jQuery('#gender'+counter).val('Female');
+		  
+		  jQuery('.fgm'+counter).css('background','greenyellow');
+		   jQuery('.gm'+counter).css('background','');
+		}
+		
+		function gotopayment()
+		{
+		
+		      var user_id=	window.localStorage.getItem("userid");
+				
+				if(!user_id)
+				{
+				 user_id=0;
+				}
+				
+			
+		
+		         $.ajax({	type:'GET',
+						
+						url:"https://www.m.ebusindia.in/service/checkout",
+						data: $("#checkoutFrm").serialize(),
+						  dataType: 'json',
+						success:function(data)
+						{
+							
+							
+							
+														
+							var order_id=data.order_id;;
+							var total_amount=data.total_amount;
+							
+							 var hash=data.hash;
+							
+							    var close;
+								var closeLoop;
+								var amt =data.total_amount;
+								var name =  jQuery('#contact_person').val();
+								var mobile = jQuery('#contact_phone').val();
+								var email = jQuery('#contact_email').val();
+								var bookingId =data.order_id;
+								var productinfo = "Bus Seats Booking";
+							
+						        var encrypttext = data.hash;
+								
+								var salt = data.salt;
+								var key = data.key;
+								
+								var txnid = data.txnid;
+								
+							 var url = "payumoney/payuBiz.html?amt="+amt+"&name="+name+"&mobileNo="+mobile+"&email="+email+"&bookingId="+bookingId+"&productinfo="+productinfo+"&hash="+encrypttext+"&salt="+salt+"&key="+key +"&txnid="+txnid;
+							
+						   
+						      var ref = window.open( url, "_blank", "EnableViewPortScale=yes" );
+							  
+							  
+							  ref.addEventListener('loadstart', function(event){
+								  });
+
+								  ref.addEventListener('loadstop', function(event){
+									// insert CSS via code / file
+									 ref.executeScript({
+										   file: "payumoneyPaymentGateway.js"
+									  });
+
+									if(event.url == "https://www.m.ebusindia.in/success.php") {
+											ref.close();
+											
+											 window.localStorage.setItem("order_id", bookingId);
+											 
+											  window.localStorage.setItem("order_msg", 'suc');
+											  
+											    window.plugins.nativepagetransitions.slide({
+												  "direction" : "left",
+												  "duration":1000,
+												  "androiddelay"     :  400,
+												  "href" : "thanku.html"
+											  });
+										
+									  }
+									  if(event.url == "https://www.m.ebusindia.in/failure.php") {
+										ref.close();
+										
+										     window.localStorage.setItem("order_id", bookingId);
+											 
+											  window.localStorage.setItem("order_msg", 'fail');
+											   window.plugins.nativepagetransitions.slide({
+												  "direction" : "left",
+												  "duration":1000,
+												  "androiddelay"     :  400,
+												  "href" : "thanku.html"
+											  });
+										 
+									  }
+								  });
+								  
+
+									ref.addEventListener('loaderror', function(e, event){
+									
+									  alert('payment loding problem');
+									});
+
+									 
+                                   ref.addEventListener('exit', function(event) { 
+								   
+								            window.localStorage.setItem("order_id", bookingId);
+											 
+											  window.localStorage.setItem("order_msg", 'fail');
+											   window.plugins.nativepagetransitions.slide({
+												  "direction" : "left",
+												  "duration":1000,
+												  "androiddelay"     :  400,
+												  "href" : "thanku.html"
+											  });
+								   
+								   
+								   });
+							  
+							
+						
+						
+						},
+						error: function(e) {
+							alert('Error: ' + e.message);
+						}
+					  });
+		
+		
+		}
+		
+		function gotopoint()
+		{
+		
+		
+		      
+		         $.ajax({	type:'GET',
+						
+						url:"https://www.m.ebusindia.in/service/pointcheckout",
+						data: $("#checkoutFrm").serialize(),
+						  dataType: 'json',
+						success:function(data)
+						{
+							
+							
+							  if(data.msg=='success')
+								{
+							 
+							 	    var bookingId=data.order_id;
+									
+									
+									
+									 window.localStorage.setItem("order_id", bookingId);
+											 
+											  window.localStorage.setItem("order_msg", 'suc');
+											  
+											    window.plugins.nativepagetransitions.slide({
+												  "direction" : "left",
+												  "duration":1000,
+												  "androiddelay"     :  400,
+												  "href" : "thanku.html"
+											  });
+									
+							     }else
+								 {
+								    
+									
+									
+									     window.localStorage.setItem("remaingpoint", data.remaingpoint);
+											 
+											  window.localStorage.setItem("order_msg", 'fail');
+											   window.plugins.nativepagetransitions.slide({
+												  "direction" : "left",
+												  "duration":1000,
+												  "androiddelay"     :  400,
+												  "href" : "agentfaild.html"
+											  });
+									
+									
+									
+								 }
+						
+						
+						},
+						error: function(e) {
+							alert('Error: ' + e.message);
+						}
+					  });
+		
+		
+		 
+		
+		}
+		
+		
+		function checkvalid()
+				 {
+				   flag         =  false;
+
+
+				if($("#contact_person").val().trim()=='' || $("#contact_email").val().trim()=='' || $("#contact_phone").val().trim()=='')
+					 {
+						 $("#ciErr").html('<span style="color:red;">Please Enter Contact Information.</span>');
+						 flag   = true;
+						 return false;
+					 }
+					 else{
+						 $("#ciErr").html('');
+						 flag   = false;
+					 }
+
+					 
+					$('.pname').each(function(i) {
+						if ($(this).val().trim() == '') {
+							$("#pErr").html('<span style="color:red;">Please Enter Passanger Name.</span>');
+							flag         =  true;
+							return false;
+						}
+						else{
+							$("#pErr").html('');
+							flag         =  false;
+						}
+					});
+					$('.p_age').each(function(i) {
+						if ($(this).val() == '') {
+							$("#pErr").html('<span style="color:red;">Please Enter Passanger Age.</span>');
+							flag         =  true;
+							return false;
+						}
+						else{
+							$("#pErr").html('');
+							flag         =  false;
+						}
+					});
+					 
+					 
+					
+					 if(flag==true)
+					 {
+						 return false;
+					 }
+					 else{
+						
+						gotopayment();
+					 }
+					 return false;
+				 } 
+				 
+				function pointcheckvalid()
+				 {
+				   flag         =  false;
+
+
+				if($("#contact_person").val().trim()=='' || $("#contact_email").val().trim()=='' || $("#contact_phone").val().trim()=='')
+					 {
+						 $("#ciErr").html('<span style="color:red;">Please Enter Contact Information.</span>');
+						 flag   = true;
+						 return false;
+					 }
+					 else{
+						 $("#ciErr").html('');
+						 flag   = false;
+					 }
+
+					 
+					$('.pname').each(function(i) {
+						if ($(this).val().trim() == '') {
+							$("#pErr").html('<span style="color:red;">Please Enter Passanger Name.</span>');
+							flag         =  true;
+							return false;
+						}
+						else{
+							$("#pErr").html('');
+							flag         =  false;
+						}
+					});
+					$('.p_age').each(function(i) {
+						if ($(this).val() == '') {
+							$("#pErr").html('<span style="color:red;">Please Enter Passanger Age.</span>');
+							flag         =  true;
+							return false;
+						}
+						else{
+							$("#pErr").html('');
+							flag         =  false;
+						}
+					});
+					 
+					 
+					
+					 if(flag==true)
+					 {
+						 return false;
+					 }
+					 else{
+						
+						gotopoint();
+					 }
+					 return false;
+				 } 
+				 
+				 
+	</script>
+<div class="container" style="overflow:hidden;">
+<div class="header" style="background-color:#b11d1d !important;">
+
+<div class="row">
+<div class="col-sm-2 col-xs-2"><div id="menu-toggle">
+<div id="menu-icon">
+
+<div style="background:#000 !important;"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div>
+
+</div>
+
+</div>
+<div id="menu-overlay"></div>
+<ul id="menu"  class="gw-nav gw-nav-list">
+
+<li class="init-un-active"> <a onClick="slide(\'index.html\')" style="padding:0px;"> <img src="images/logo.png" class="img-responsive"> </a> </li>
+<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-home"></i> Home</span> <b class="gw-arrow"></b> </a></li>
+<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-user"></i> About Us</span> <b class="gw-arrow"></b> </a></li>
+<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-print"></i> Print Ticket</span> <b class="gw-arrow"></b> </a></li>
+<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-file-o"></i> Cancellation</span> <b class="gw-arrow"></b> </a></li>
+<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-file-image-o"></i> Gallery</span> <b class="gw-arrow"></b> </a></li>
+<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-sign-in"></i> Login</span> <b class="gw-arrow"></b> </a></li>
+</ul>
+
+
+</div>
+
+ <div class="col-sm-10 col-xs-10 dasbord-font"><div class="col-sm-8 col-xs-8 padding-none dasbord-font-text"><span class="passanger-top">Enter Passenger Details</span><br><span class="passanger-top-1">ebusindia</span> <span  id="jdt" class="passanger-top-1">12-4-2018</span></div>
+ <div class="col-sm-2 col-xs-2 padding-none"><a class="bkpg" onClick="bakpage('dropingpoint.html')" style="float:right;"><img src="images/back.png"></a></div></div>
+
+
+</div>
+
+</div>
+
+
+<div class="quick-bus-link">
+	<div class="ebus-list-inner">
+
+		<div class="row">
+			<div class="ebus-seat-list">
+				<div class="timercountdown">Your session expired in <span id="demo"></span></div>
+			<form name="checkoutFrm"  id="checkoutFrm" method="post" action="" >
+                    <input type="hidden" name="base_fare" id="base_fare" value="0">  
+					
+					<input type="hidden" name="user_id" id="user_id" value="0">
+				  
+				   <input type="hidden" name="tot_seats" id="tot_seats" value="0">
+				   <input type="hidden" name="journey_date" id="journey_date" value="">
+				   <input type="hidden" name="bus_id" id="bus_id" value="">
+				   <input type="hidden" name="deptPlace" id="deptPlace" value="">
+				   <input type="hidden" name="dropPlace" id="dropPlace" value="">
+				   <input type="hidden" name="deptFrom" id="deptFrom" value="">
+				   <input type="hidden" name="arriveTo" id="arriveTo" value="">
+                  <input type="hidden" name="total_fare" id="total_fare" value="<?php echo $tot_fare;?>">
+				  
+			      <input type="hidden" name="all_service_tax" id="all_service_tax" value="0">
+	              <input type="hidden" name="all_total_fare" id="all_total_fare" value="0">
+				  
+				   <input type="hidden" name="service_tax" id="service_tax" value="0">
+				<div class="col-sm-12 col-xs-12">
+					<h3 class="passanger-detail-head">Contact Details</h3>
+					<div id="ciErr" align="center"></div>
+					<div class="passanger-detail-outer">
+						<p>Your ticket will be sent to the below Email & Phone</p>
+						<div class="form-group">
+						  <label>Name</label>
+						  <input type="text" class="form-control" name="contact_person"  id="contact_person" placeholder="Enter Name">
+						</div>
+						<div class="form-group">
+						  <label>Email ID</label>
+						  <input type="email" name="contact_email" id="contact_email" class="form-control" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+						  <label>Phone</label>
+						  <input type="number" class="form-control" name="contact_phone"  id="contact_phone" placeholder="Enter your phone no">
+						</div>
+					</div>
+				</div>
+				<div id="passangehtml" class="col-sm-12 col-xs-12">
+				  <div id="pErr" align="center"></div>
+					<h3 class="passanger-detail-head">Passenger Information</h3>
+								
+					
+				</div>
+				</form>
+			</div>
+			
+			<div id="paymentdiv">
+			
+			</div>
+		</div>
+	</div>
+	<br/><br/>
+	<div class="seat-list-bottom" style="padding-left:0px;">
+		<div class="col-sm-12 col-xs-12" style="background-color:#fff;">
+			<div class="col-sm-4 col-xs-4 padding-none">
+				<p style="float:left;color: #333;" ><span class="book">Amount </span> <span class="book-amt">&#8377; &nbsp; <span id="totamount">7484.40</span> </span></p>
+			</div>
+			<div class="col-sm-8 col-xs-8 padding-none">
+			<p style="float:right"><a class="book-btn" onClick="checkvalid()" href="javascript:void(0)">Continue Payu</a></p>
+			<p id="walletsystem" style="float:right;display:none;"><a class="book-btn" onClick="pointcheckvalid()" href="javascript:void(0)">Point</a></p>
+				
+							
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+</body>
+</html>

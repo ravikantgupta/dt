@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InAppBrowser Tester</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   
+    
+	 <script type="text/javascript" src="cordova.js"></script>
+            <script type="text/javascript" src="js/index.js"></script>
+                <script type="text/javascript" src="js/functions.js"></script>
+
+
+                <script src="js/jquery-1.11.2.min.js"></script>
+
+
+                <link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
+
+                <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+                <script src="js/left-menu2.js"></script>
+				
+			
+   
+</head>
+<body onload="setval()">
+    
+	<script>
+	function setval()
+	{
+	
+	/*var win = window.open( "https://www.ebusindia.in/html/test.html", "_blank", "EnableViewPortScale=yes" );
+		win.addEventListener( "loadstop", function() {
+			win.executeScript({ code: "alert('ram1');jQuery('#myform').submit();alert('ram');" });
+		});
+    */
+	
+	
+	
+
+   
+     var close;
+    var closeLoop;
+    var amt =66;
+    var name =  'Ravi';
+    var mobile = '77474747474';
+    var email = 'ravi@gmail.com';
+    var bookingId = '121212';
+    var productinfo = "Order for ";
+    var salt = "04gtyTca";
+    var key = "0Ki3Td";
+    var string = key + '|' + bookingId + '|' + amt+ '|' + productinfo + '|' + name + '|' + email +'|||||||||||'+salt; 
+	
+    var encrypttext = '3u5353on53n4';
+
+    var url = "payumoney/payuBiz.html?amt="+amt+"&name="+name+"&mobileNo="+mobile+"&email="+email+"&bookingId="+bookingId+"&productinfo="+productinfo+"&hash="+encrypttext+"&salt="+salt+"&key="+key ;
+    console.log(url);
+    
+	
+	var ref = window.open( url, "_blank", "EnableViewPortScale=yes" );
+	
+  ref.addEventListener('loadstart', function(event){
+  });
+
+  ref.addEventListener('loadstop', function(event){
+    // insert CSS via code / file
+     ref.executeScript({
+           file: "payumoneyPaymentGateway.js"
+      });
+
+    if(event.url == "http://localhost/success.php") {
+            $cordovaInAppBrowser.close();
+            cartService.clearCart();
+            $state.go("app.thanksAndHotFix");
+      }
+      if(event.url == "http://localhost/failure.php") {
+        $cordovaInAppBrowser.close();
+         $ionicPopup.alert({
+                 title:'Something Is Wrong',
+                 template:'You payment failed!'
+               });
+      }
+  });
+  
+
+    ref.addEventListener('loaderror', function(e, event){
+	
+	alert('loaderro');
+    });
+
+      ref.addEventListener('exit', function(e, event){
+	  
+	  alert('exit');
+      });
+  
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
+	
+    </script>
+	<form id="payform" action="https://www.paypal.com/it/cgi-bin/webscr" method="post" target="_self">;
+<!-- Saved buttons use the "secure click" command -->
+  <input type="hidden" name="cmd" value="_s-xclick">
+
+  <!-- Saved buttons are identified by their button IDs -->
+  <input type="hidden" name="hosted_button_id" value="221">
+
+  <!-- Saved buttons display an appropriate button image. -->
+  <input type="image" name="submit"
+    src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+    alt="PayPal - The safer, easier way to pay online">
+  <img alt="" width="1" height="1"
+    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+</form>
+</body>
+</html>
