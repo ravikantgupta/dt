@@ -23,55 +23,25 @@
 		
   	
   		
-    	<!--Icons and Splash Screens Configuration for Mofluid Apps-->
-		
-		<!-- ===================== -->
-		<!-- Global Configuration  -->
-		<!-- ===================== -->
-		<!-- Icons -->
-		<icon src="resource/icon/96x96px_2.jpg" />
-		<!-- Splash Screens -->
-		<gap:splash src="resource/splash/480x800.jpg" />
-		
-		<!-- ====================== -->
-		<!-- iOS Configuration      -->
-		<!-- ====================== -->
-		<!-- Icons -->
-		
-		
-		
-		<icon src="resource/icon/96x96px_2.jpg" gap:platform="android" width="96" height="96" />
-		<icon src="resource/icon/72x72px_1.jpg" gap:platform="android" width="72" height="72" />
-		<icon src="resource/icon/48x48px_1.jpg" gap:platform="android" width="48" height="48" />
-		<icon src="resource/icon/36x36px_1.jpg" gap:platform="android" width="36" height="36" />
-		<icon src="resource/icon/96x96px_3.jpg" gap:platform="android" width="96" height="96" />
-		
-		<!--
-		<icon src="{{android-icon-small-2x}}" gap:platform="android" width="58" height="58" />
-		<icon src="{{android-icon-40-2x}}" gap:platform="android" width="80" height="80" />
-		<icon src="{{android-icon-50-2x}}" gap:platform="android" width="100" height="100" />
-		<icon src="{{android-icon-57-2x}}" gap:platform="android" width="114" height="114" />
-		<icon src="{{android-icon-60-2x}}" gap:platform="android" width="120" height="120" />
-		<icon src="{{android-icon-72-2x}}" gap:platform="android" width="144" height="144" />
-		<icon src="{{android-icon-76-2x}}" gap:platform="android" width="152" height="152" />
-		-->
-		<!-- Splash Screens -->
-		<gap:splash src="resource/splash/480x800.jpg" gap:platform="android" width="480" height="800" />
-		<gap:splash src="resource/splash/200x320.jpg" gap:platform="android" width="200" height="320" />
-		<gap:splash src="resource/splash/512x512_7.jpg" gap:platform="android" width="320" height="480" />
-		<gap:splash src="resource/splash/720x1280.jpg" gap:platform="android" width="720" height="1280" />
-		<gap:splash src="resource/splash/800x480.jpg" gap:platform="android" width="800" height="480" />
-		<gap:splash src="resource/splash/320x200.jpg" gap:platform="android" width="320" height="200" />
-		<gap:splash src="resource/splash/480x320.jpg" gap:platform="android" width="480" height="320" />
-		<gap:splash src="resource/splash/1280x720.jpg" gap:platform="android" width="1280" height="720" />
-		
+    	 <platform name="android">
+        <icon density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
+        <icon density="mdpi" src="res/icon/android/icon-48-mdpi.png" />
+        <icon density="hdpi" src="res/icon/android/icon-72-hdpi.png" />
+        <icon density="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
+        <splash density="land-ldpi" src="res/screen/android/screen-ldpi-landscape.png" />
+        <splash density="land-mdpi" src="res/screen/android/screen-mdpi-landscape.png" />
+        <splash density="land-xhdpi" src="res/screen/android/screen-xhdpi-landscape.png" />
+        <splash density="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="port-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
+        <splash density="port-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
+        <splash density="port-xhdpi" src="res/screen/android/screen-xhdpi-portrait.png" />
+    </platform>
     
 	     <preference name='phonegap-version' value='cli-7.0.1' />
 <preference name='pgb-builder-version' value='1' />
 			  <preference name="SplashScreen" value="screen" />
-				<preference name="show-splash-screen-spinner" value="true"/>
-				  <preference name="auto-hide-splash-screen" value="true"/>
-				  <preference name="SplashScreenDelay" value="5000" />
+				 <preference name="SplashScreenDelay" value="10000" />
+                 <preference name="SplashMaintainAspectRatio" value="true" />
 				  <preference name="disable-cursor" value="false"/>
                   <preference name="android-minSdkVersion" value="14"/>
                 <preference name="orientation" value="portrait" />
