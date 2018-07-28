@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
     <widget xmlns:gap="http://phonegap.com/ns/1.0" 
     xmlns="http://www.w3.org/ns/widgets" 
-    id="com.dealtargetweb.demo" 
+    id="com.ebusindia.bus" 
     version="2.0.0">
 
-        <name>DealsTarget</name>
+        <name>EbusIndia</name>
         <description>
-            Deals,coupon and product
+            Online volvo bus booking | AC Volvo Bus Booking Online Services
         </description>
-        <author email="rvgupta444@gmail.com"
-        href="http://cordova.io">
+        <author email="info@ebusindia.in"
+        href="https://www.ebusindia.in">
            Orangespike  team
         </author>
     

@@ -12,9 +12,14 @@
 		       var city_from=$('#city_from').val();
 	               var city_to=$('#city_to').val();
 	  
-		
+		         var city_from_text=$('#autocomplete').val();
+	               var city_to_text=$('#autocomplete1').val();
+				   
 		       window.localStorage.setItem("datecity_from", city_from);
 	           window.localStorage.setItem("datecity_to", city_to);
+			   
+			    window.localStorage.setItem("datecity_from_text", city_from_text);
+	           window.localStorage.setItem("datecity_to_text", city_to_text);
 	           
          
 		 window.plugins.nativepagetransitions.slide({
