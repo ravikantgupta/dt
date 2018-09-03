@@ -45,116 +45,57 @@
 				<script type="text/javascript" src="css/sugesion/jquery.autocomplete.min.js"></script>
 
     </head>
-    <body onload="setvalue()">
+    <body >
 
 
 <script>
-	function setvalue()
-		{
-		
-		
-		   
-		   var datecity_from= window.localStorage.getItem("datecity_from");
-		   var datecity_to= window.localStorage.getItem("datecity_to");
-		   
-		   var datecity_from_text= window.localStorage.getItem("datecity_from_text");
-		   var datecity_to_text= window.localStorage.getItem("datecity_to_text");
-		   
-	       var jrn_date= window.localStorage.getItem("datejrn_date");
-		   
-		  
-		   
-		 
-		   
-		   if (localStorage.getItem("datejrn_date") === null) {
-                 var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-					var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	var pushNotification;
 
-					var datestring = ["1<sup>st</sup>", "2<sup>nd</sup>", "3<sup>rd</sup>", "4<sup>th</sup>", "5<sup>th</sup>", "6<sup>th</sup>", "7<sup>th</sup>", "8<sup>th</sup>", "9<sup>th</sup>", "10<sup>th</sup>", "11<sup>th</sup>", "12<sup>th</sup>", "13<sup>th</sup>", "14<sup>th</sup>", "15<sup>th</sup>", "16<sup>th</sup>", "17<sup>th</sup>", "18<sup>th</sup>", "19<sup>th</sup>", "20<sup>th</sup>", "21<sup>st</sup>", "22<sup>nd</sup>", "23<sup>rd</sup>", "24<sup>th</sup>", "25<sup>th</sup>", "26<sup>th</sup>", "27<sup>th</sup>", "28<sup>th</sup>", "29<sup>th</sup>", "30<sup>th</sup>", "31<sup>st</sup>"];
-					var d = new Date();
-					var dayName = days[d.getDay()];
+function successHandler (result) {
+}
+function errorHandler (error) {
+}
 
-					 document.getElementById("day").innerHTML = datestring[d.getDate()-1];
-					 
-					 document.getElementById("dayname").innerHTML = days[d.getDay()];
-					 
-					 document.getElementById("month").innerHTML =  months[d.getMonth()];
-					 
-					 document.getElementById("jrn_date").value = d.getFullYear()+'-'+(parseInt(d.getMonth())+1)+'-'+d.getDate();
-					
-					 
-            }else
-			{
-		    document.getElementById("jrn_date").value =jrn_date;
-			
-			 var d = new Date(jrn_date);
-			 
-			setdatehtml(d);
-			
-			 window.localStorage.removeItem("datejrn_date");
-		   	}	
+window.onNotificationGCM = function(e) {
+    switch( e.event )
+    {
+        case 'registered':
+            if ( e.regid.length > 0 )
+            {
+                alert('REGISTERED -> REGID:' + e.regid );
+            }
+            break;
+        case 'message':
+           alert('gcm: on message ');
+            break;
 
+        case 'error':
+            alert( "gcm error: "+e.msg );
+            break;
+        default:
+            break;
+    }
+};
 
+function initialize() {
+    document.addEventListener("deviceready", function(){
+        console.log("device ready");
 
-                 $.ajax({	    	type:'GET',
-						
-						url:"https://www.m.ebusindia.in/service/getcityhtml",
-						data:'falag=1',
-						  dataType: 'json',
-						success:function(data)
-						{
-						
-						
-						 var currencies = [];
-						var i=0;
-						for (var key in data) {
-							if (data.hasOwnProperty(key)) {
-																
-								contstr={value: data[key], data:key};
-								currencies[i]=contstr;
-								
-								i++;
-							}
-						}
-		
-							 
-						
-							
-							jQuery('#autocomplete').autocomplete({
-								lookup: currencies,
-								onSelect: function (suggestion) {
-								
-								  $('#city_from').val(suggestion.data);
-								}
-							  }); 
-							  
-							 
-							  
-							   jQuery('#autocomplete1').autocomplete({
-								lookup: currencies,
-								onSelect: function (suggestion) {
-								
-								  jQuery('#city_to').val(suggestion.data);
-								}
-							  });
-							  
-							 
-							  
-						     document.getElementById("city_from").value =datecity_from;
-		                     document.getElementById("city_to").value =datecity_to;
-							 
-							  document.getElementById("autocomplete").value =datecity_from_text;
-		                     document.getElementById("autocomplete1").value =datecity_to_text;
-							 
-							 
-							
-						},
-						error: function(e) {
-							alert('Error: ' + e.message);
-						}
-					  });
-			
-		}
+        pushNotification = window.plugins.pushNotification;
+        if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
+            try {
+                pushNotification.register(
+                    successHandler, errorHandler, { "senderID":"562539000000", "ecb":"window.onNotificationGCM" });
+            } catch(err)
+            {
+                txt="There was an error on this page.\n\n";
+                txt+="Error description: " + err.message + "\n\n";
+                alert(txt);
+            }
+        }
+
+    });
+}
 	</script>
 
 
