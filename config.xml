@@ -20,7 +20,7 @@
   	       <plugin name="phonegap-plugin-push" spec="2.0.0" />
   		
     	 <platform name="android">
-		 <resource-file src="google-services.json" target="app/google-services.json" />
+		
         <icon density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
         <icon density="mdpi" src="res/icon/android/icon-48-mdpi.png" />
         <icon density="hdpi" src="res/icon/android/icon-72-hdpi.png" />
