@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
     <widget xmlns:gap="http://phonegap.com/ns/1.0" 
     xmlns="http://www.w3.org/ns/widgets" 
-    id="com.ebusindia.bus" 
+    id="com.ebusindia898.bus" 
     version="2.0.0">
 
         <name>demo dt</name>
