@@ -15,8 +15,8 @@
     
     	
     	 <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
-    	<plugin name="org.apache.cordova.contacts" spec="0.2.16" source="npm" />
-		  
+    	
+	<plugin spec="https://github.com/apache/cordova-plugin-device.git" source="git" />	  
   	      
   		
     	 <platform name="android">
