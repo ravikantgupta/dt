@@ -16,7 +16,7 @@
     	
     	 <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     	
-		   <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
+		  
   	       <plugin name="phonegap-plugin-push" spec="2.0.0" />
   		
     	 <platform name="android">
