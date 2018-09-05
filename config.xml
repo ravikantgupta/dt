@@ -15,7 +15,7 @@
     
     	
     	 <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
-    	<plugin name="org.apache.cordova.device" spec="0.2.3" source="pgb" />
+    	<plugin name="org.apache.cordova.contacts" spec="0.2.16" source="npm" />
 		  
   	      
   		
